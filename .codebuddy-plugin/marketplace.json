@@ -1,0 +1,6 @@
+{
+  "name": "evil-mp",
+  "plugins": [
+    { "name": "evil", "source": "evil" }
+  ]
+}
